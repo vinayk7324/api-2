@@ -17,7 +17,13 @@ const app = express();
 
 //middileware
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+    {
+        origin:["https://chat-app-fronted-2.vercel.app/"],
+        methods:["GET","POST","OPTIONS","DELETE"],
+        credentials:true
+    }
+));
 
 //data base connection
 connectDB();
