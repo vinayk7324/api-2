@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(
     {
-        origin:["https://chat-app-fronted-2.vercel.app/"],
+        origin:["https://chat-app-fronted-2.vercel.app"],
         methods:["GET","POST","OPTIONS","DELETE"],
         credentials:true
     }
