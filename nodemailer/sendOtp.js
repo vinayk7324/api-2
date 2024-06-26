@@ -1,10 +1,21 @@
 import {createTransport} from 'nodemailer'
+import { userModel } from '../model/userModel';
 let storeOtp; 
 export const sentOTP = async (req,res)=>{
-    const {email} = req.body
-    storeOtp = `${Math.floor(100000+Math.random()*900000)}`;
+
 
     try {
+        const {email} = req.body
+        const user = await userModel.findOne({email});
+        if(user){
+            return res.send({
+                success:false,
+                message:"user already exist"
+            })
+        }
+        storeOtp = `${Math.floor(100000+Math.random()*900000)}`;
+
+
         const transpoter = createTransport({
             service:"gmail",
             
